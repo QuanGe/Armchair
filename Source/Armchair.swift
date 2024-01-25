@@ -1393,6 +1393,10 @@ open class Manager : ArmchairManager {
         userDefaultsObject?.synchronize()
     }
     
+    public func resetEventCount() {
+        StandardUserDefaults().setObject(NSNumber(value: 0), forKey: keyForArmchairKeyType(ArmchairKey.SignificantEventCount))
+    }
+    
     private func remindMeLater() {
         userDefaultsObject?.setDouble(Date().timeIntervalSince1970, forKey: keyForArmchairKeyType(ArmchairKey.ReminderRequestDate))
         userDefaultsObject?.synchronize()
