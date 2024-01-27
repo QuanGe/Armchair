@@ -949,7 +949,7 @@ open class Manager : ArmchairManager {
     
     var customAlertClosure: ArmchairClosureCustomAlert?
     
-    var showCancelAction = true
+    public var showCancelAction = true
     
     #if os(iOS)
     var willPresentModalViewClosure: ArmchairAnimateClosure?
