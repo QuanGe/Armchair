@@ -949,6 +949,8 @@ open class Manager : ArmchairManager {
     
     var customAlertClosure: ArmchairClosureCustomAlert?
     
+    var showCancelAction = true
+    
     #if os(iOS)
     var willPresentModalViewClosure: ArmchairAnimateClosure?
     var didDismissModalViewClosure: ArmchairAnimateClosure?
@@ -1272,10 +1274,14 @@ open class Manager : ArmchairManager {
                         self.remindMeLater()
                     }))
                 }
-                alertView.addAction(UIAlertAction(title: cancelButtonTitle, style: .cancel, handler: {
-                    (alert: UIAlertAction!) in
-                    self.dontRate()
-                }))
+            
+                if (showCancelAction) {
+                    alertView.addAction(UIAlertAction(title: cancelButtonTitle, style: .cancel, handler: {
+                        (alert: UIAlertAction!) in
+                        self.dontRate()
+                    }))
+                }
+               
 
                 ratingAlert = alertView
 
@@ -1302,7 +1308,10 @@ open class Manager : ArmchairManager {
                 if showsRemindButton() {
                     alert.addButton(withTitle: remindButtonTitle!)
                 }
-                alert.addButton(withTitle: cancelButtonTitle)
+            
+                if (showCancelAction) {
+                    alert.addButton(withTitle: cancelButtonTitle)
+                }
                 ratingAlert = alert
                 
                 if let window = NSApplication.shared.keyWindow {
