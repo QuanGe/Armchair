@@ -1402,6 +1402,11 @@ open class Manager : ArmchairManager {
         userDefaultsObject?.synchronize()
     }
     
+    public func ratedFromAnyVersion() -> Bool {
+        let ratedAnyVersion = userDefaultsObject?.boolForKey(keyForArmchairKeyType(ArmchairKey.RatedAnyVersion))
+        return ratedAnyVersion ?? false
+    }
+    
     public func resetEventCount() {
         StandardUserDefaults().setObject(NSNumber(value: 0), forKey: keyForArmchairKeyType(ArmchairKey.SignificantEventCount))
     }
